@@ -1,0 +1,39 @@
+.login-container {
+  height: 200px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  
+}
+
+.login-container div {
+  margin-bottom: 20px;
+}
+
+.login-container label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.login-container input[type='text'],
+.login-container input[type='password'] {
+  background-color: rgb(199, 206, 207);
+  border: none;
+  padding: 5px;
+}
+
+.login-container input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+.login-container button {
+  background-color: rgb(21, 66, 21);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}

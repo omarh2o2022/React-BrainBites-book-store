@@ -1,0 +1,45 @@
+/* Cart.css */
+
+.cartbox {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .remove {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .purchase {
+    background-color: #2cbb5c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  p {
+    font-size: 18px;
+  }
+  

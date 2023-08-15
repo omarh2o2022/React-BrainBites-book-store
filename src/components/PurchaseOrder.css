@@ -1,0 +1,90 @@
+/* PurchaseOrder.css */
+
+/* Container for the entire page */
+  .purchasecontainer {
+    margin: auto;
+    width: 450px;
+    height: 600px;
+    padding-top: 70px;
+      
+    
+  }
+  .selectCard{
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 25px;
+    margin-bottom: 25px;
+
+  }
+
+  .totalAmount{
+  margin-top: 60px;
+  font-size: 17px;
+
+  }
+   .cardinput{
+    padding: 1%;
+   }
+  /* Images of credit cards */
+  .purchasecontainer img {
+    width: 70px;
+    margin: 10px;
+  }
+  
+  /* Radio buttons */
+  .purchasecontainer input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  
+  @font-face {
+  font-family: 'PT Sans Narrow', sans-serif; ;
+  src: url(/public/fonts/PT_Sans_Narrow/PTSansNarrow-Bold.ttf);
+  }
+  
+  
+ 
+  .cardName, .CardNumber, .ExpirationDate, .SecurityCode, .PostalCode, .PhoneNumber, .streetAdress, .city, .state {
+    
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 17px;
+    padding-top: 18px;
+   
+  }
+  input[type=text] {
+    
+    margin-left: 10px;
+    padding-left: 5px;
+    border-radius: 10px;
+    width: 250px;
+    height: 25px;
+    
+    
+  }
+  
+  
+  
+  /* Payment button */
+  .purchasecontainer button {
+    margin-top: 20px;
+    
+    padding: 10px 20px;
+    background-color: rgb(29, 29, 253);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+  }
+  
+  /* Lock icon inside the payment button */
+  .purchasecontainer button img {
+    width: 20px;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+
+  .whiteLock{
+    width: 55px;
+    height: 18px;
+  }
+  

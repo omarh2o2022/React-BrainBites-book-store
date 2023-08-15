@@ -1,38 +1,140 @@
-.App {
-  text-align: center;
-}
+/* TopBar.css */
+.top-bar {
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 100px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  background-image: url('/public/images/header4.png'); /* Path to your background image */
+  background-size: cover; /* Cover the entire container with the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-position: right; /* Center the background image horizontally and vertically */
+
+  
+  padding: 10px;
+}
+
+.cartLogo{
+  height: 45px;
+  width: 55px;
+}
+
+
+
+
+
+.store-name {
+  margin-left: 419px;
+  color: #eee9da;
+  font-family: 'Lato', sans-serif;
+  font-size: 45px;
+  font-weight: bold;
+  text-align: center;
+  
+}
+.slogan{
+  margin-left: 419px;
+  color: #eee9da;
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  margin-right: 19px;
+}
+
+button {
+  background-color: rgb(108, 120, 141);
+  border: 2px solid rgb(108, 120, 141);
+  border-radius: 30px;
+  padding: 8px 16px;
   color: white;
+  font-weight: bold;
+  margin-left: 10px;
+  cursor: pointer;
+  
+  
 }
 
-.App-link {
-  color: #61dafb;
+/* Style for search bar input */
+.search-bar {
+  padding: 6px;
+  border: 2px solid rgb(83, 102, 83);
+  border-radius: 20px;
+  margin-left: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Remove default styles for input[type="text"] */
+input[type="text"] {
+  /* -webkit-appearance: none; */
+  background-color:  rgb(206, 241, 206);;
+  border: 1px;
+  outline: 1px;
 }
+
+
+/* book container */
+
+.book-container {
+  display: flex;
+  justify-content: center; /* Distribute books evenly with space between them */
+  flex-wrap: wrap; /* Wrap books to the next line if needed */
+  margin-top: 120px;
+  
+}
+
+.book-box {
+  
+  width: calc(25% - 20px); /* Set each book box to take up 33.33% of the container width minus some space for margins */
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #eee9da;
+  border-radius: 10px;
+  text-align: center;
+  background-color: rgb(224, 224, 199);
+}
+
+.book-box img {
+  height: 200px;
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+}
+
+.review {
+  margin-top: 10px;
+}
+
+/* add form */
+
+.add-form{
+  margin-top: 40px;
+  text-align: center;
+  
+}
+
+.add-cart{
+  height: 40px;
+  width: 400px;
+  font-size: large;
+  background-color: rgb(235, 236, 236);
+  border-radius: 20px;
+  padding-left: 5px;
+  
+}
+
+.addToCartBtn {
+  margin-top: 45px;
+  background-color: rgb(69, 138, 86);
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.book-box.clicked .addToCartBtn {
+  background-color: #e74e1f;
+}
+
