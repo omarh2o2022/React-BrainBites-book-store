@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './PurchaseOrder.css';
 import { useNavigate } from 'react-router-dom';
+import ErrorCard from './ErrorCard';
 
 const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
   const [selectedCard, setSelectedCard] = useState('');
@@ -13,6 +14,7 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
   const [streetAdress, setStreetAdress] = useState('');
   const [city, setCity] = useState ('');
   const [state, setState] = useState ('');
+  const [fieldErrors, setFieldErrors] = useState({});
   const navigate = useNavigate();
 
   const handleCardSelect = (cardType) => {
@@ -20,32 +22,48 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
   };
 
   const handlePay = () => {
-    // Check if all fields are filled
-    if (
-      selectedCard &&
-      nameOnCard &&
-      cardNumber &&
-      expirationDate &&
-      securityCode &&
-      postalCode &&
-      phoneNumber &&
-      streetAdress &&
-      city &&
-      state
-    ) {
-      // Payment logic or actions here
+    const errors = {};
+
+    // Validate each field
+    if (!selectedCard) errors.selectedCard = 'Select a card type';
+    if (!nameOnCard || !/^[a-zA-Z ]+$/.test(nameOnCard))
+      errors.nameOnCard = 'Enter a valid name';
+    if (!cardNumber || !/^\d{16}$/.test(cardNumber))
+      errors.cardNumber = 'Enter a valid 16-digit card number';
+    if (!expirationDate || !/^\d{4}$/.test(expirationDate))
+      errors.expirationDate = 'Enter a valid expiration date (example 12/23)';
+    if (!securityCode || !/^\d{3}$/.test(securityCode))
+      errors.securityCode = 'Enter a valid 3-digits security code';
+      if (!streetAdress) errors.streetAddress = 'Enter a street address';
+    if (!city || !/^[a-zA-Z]+$/.test(city)) errors.city = 'Enter a valid city';
+    if (!state || !/^[A-Z]{2}$/.test(state))
+      errors.state = 'Enter a valid two-letter state code';
+    if (!postalCode || !/^\d+$/.test(postalCode))
+      errors.postalCode = 'Enter a valid postal code';
+    if (!phoneNumber || !/^\d{10}$/.test(phoneNumber))
+      errors.phoneNumber = 'Enter a valid 10-digit phone number';
+
+    // Set errors and highlight fields
+    setFieldErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      
 
       // Empty the cart
       emptyCart();
 
-      // Show success message
-      alert('Your purchase has been made successfully.');
-
-      // Navigate back to the main page
-      navigate('/app');
-    } else {
-      // Show a popup indicating missing fields
-      alert('Please fill out all the required fields.');
+      // Show success message in a popup
+      const popup = window.open(
+        '',
+        '_blank',
+        'width=300,height=200,top=200,left=400'
+      );
+      popup.document.write('<p>Your purchase has been successful.</p>');
+      setTimeout(() => {
+        popup.close();
+        // Navigate back to the main page
+        navigate('/app');
+      }, 3000);
     }
   };
 
@@ -184,6 +202,7 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
           />
 
           </div>
+        
           
         </div>
 
@@ -194,6 +213,10 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
             <img src='images/whitelock.png' alt='Lock' className='whiteLock' />
           </span>
         </button>
+
+        {Object.keys(fieldErrors).length > 0 && (
+        <ErrorCard errors={fieldErrors} onClose={() => setFieldErrors({})} />
+         )}
       </div>
     </div>
   );
