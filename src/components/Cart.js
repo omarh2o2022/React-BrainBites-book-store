@@ -6,12 +6,14 @@ import './Cart.css';
 
 
 const Cart = ({ cartItems, removeFromCart }) => {
+
+  const navigatePurchase = useNavigate();
   const getTotalPrice = () => {
     const totalPrice = cartItems.reduce((acc, book) => acc + book.price, 0);
     return totalPrice.toFixed(2);
   };
 
-  const navigatePurchase = useNavigate();
+  
   const goToPurchase = () => {
     if (cartItems.length === 0) {
       alert('Please add items to the cart.');

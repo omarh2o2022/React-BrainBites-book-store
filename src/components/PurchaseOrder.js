@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './PurchaseOrder.css';
+import { useNavigate } from 'react-router-dom';
 
-const PurchaseOrder = ({ totalAmount }) => {
+const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
   const [selectedCard, setSelectedCard] = useState('');
   const [nameOnCard, setNameOnCard] = useState('');
   const [cardNumber, setCardNumber] = useState('');
@@ -12,15 +13,40 @@ const PurchaseOrder = ({ totalAmount }) => {
   const [streetAdress, setStreetAdress] = useState('');
   const [city, setCity] = useState ('');
   const [state, setState] = useState ('');
+  const navigate = useNavigate();
 
   const handleCardSelect = (cardType) => {
     setSelectedCard(cardType);
   };
 
   const handlePay = () => {
-    // Here, you can implement the payment logic or any action you want to perform
-    // when the user clicks the "Pay" button.
-    console.log('Payment processing...');
+    // Check if all fields are filled
+    if (
+      selectedCard &&
+      nameOnCard &&
+      cardNumber &&
+      expirationDate &&
+      securityCode &&
+      postalCode &&
+      phoneNumber &&
+      streetAdress &&
+      city &&
+      state
+    ) {
+      // Payment logic or actions here
+
+      // Empty the cart
+      emptyCart();
+
+      // Show success message
+      alert('Your purchase has been made successfully.');
+
+      // Navigate back to the main page
+      navigate('/app');
+    } else {
+      // Show a popup indicating missing fields
+      alert('Please fill out all the required fields.');
+    }
   };
 
   return (
@@ -28,7 +54,8 @@ const PurchaseOrder = ({ totalAmount }) => {
       <div>
         {/* Display the images of credit cards with radio buttons */}
         <div>
-          <div className='selectCard'>Select your card</div>
+          <div className='selectCard'>Fill the form with random information</div>
+          <div className='typeOfCar'>Select the type of card</div>
           <label>
             <input
               type='radio'
@@ -71,7 +98,7 @@ const PurchaseOrder = ({ totalAmount }) => {
            <input
             
             type='text'
-            placeholder='  any Name'
+            placeholder='First and last Name'
             value={nameOnCard}
             onChange={(e) => setNameOnCard(e.target.value)}
           />
@@ -81,7 +108,7 @@ const PurchaseOrder = ({ totalAmount }) => {
            <div className='CardNumber'>Card  Number    :       
            <input
             type='text'
-            placeholder='  any Number'
+            placeholder='0000 0000 0000 0000'
             value={cardNumber}
             onChange={(e) => setCardNumber(e.target.value)}
           />
@@ -92,7 +119,7 @@ const PurchaseOrder = ({ totalAmount }) => {
            <div className='ExpirationDate'>Expiration Date:
           <input
             type='text'
-            placeholder='  any Date'
+            placeholder=' month/year'
             value={expirationDate}
             onChange={(e) => setExpirationDate(e.target.value)}
           />
@@ -103,7 +130,7 @@ const PurchaseOrder = ({ totalAmount }) => {
            <div className='SecurityCode'>Security Code :
           <input
             type='text'
-            placeholder='  any 4 digit Code'
+            placeholder='000'
             value={securityCode}
             onChange={(e) => setSecurityCode(e.target.value)}
           />
@@ -112,7 +139,7 @@ const PurchaseOrder = ({ totalAmount }) => {
            <div className='streetAdress'>Street Adress  :
           <input
             type='text'
-            placeholder='  any street with number'
+            placeholder='000 2nd Ave.'
             value={streetAdress}
             onChange={(e) => setStreetAdress(e.target.value)}
           />
@@ -122,7 +149,7 @@ const PurchaseOrder = ({ totalAmount }) => {
           <div className='city'>City  :
           <input
             type='text'
-            placeholder='  any city'
+            placeholder='Los Angeles'
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
@@ -131,7 +158,7 @@ const PurchaseOrder = ({ totalAmount }) => {
           <div className='state'>State  :
           <input
             type='text'
-            placeholder='  any state'
+            placeholder='CA'
             value={state}
             onChange={(e) => setState(e.target.value)}
           />
@@ -142,7 +169,7 @@ const PurchaseOrder = ({ totalAmount }) => {
           <div className='PostalCode'>Zip code  :
           <input
             type='text'
-            placeholder='  any zipCode'
+            placeholder='00000'
             value={postalCode}
             onChange={(e) => setPostalCode(e.target.value)}
           />
@@ -151,7 +178,7 @@ const PurchaseOrder = ({ totalAmount }) => {
           <div className='PhoneNumber'>Phone Number:
           <input
             type='text'
-            placeholder='  any Phone Number'
+            placeholder='(000)-000-0000'
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />

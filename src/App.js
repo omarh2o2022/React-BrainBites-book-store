@@ -1,7 +1,7 @@
 /* App.js code */
 
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import TopBar from './components/TopBar';
@@ -40,6 +40,8 @@ const App = () => {
 
   ]);
 
+ 
+
   const [cartMessage, setCartMessage] = useState('');
   const [clickedButtons, setClickedButtons] = useState([]);
 
@@ -63,6 +65,11 @@ const App = () => {
     return totalPrice.toFixed(2);
   };
 
+  const emptyCart = () => {
+    setCartItems([]);
+  };
+  
+
 
   return (
     <Router>
@@ -74,6 +81,8 @@ const App = () => {
         
         
         <Routes>
+
+          <Route path="/login" element={<Login />} />
           <Route
             path="/app"
             element={
@@ -86,12 +95,12 @@ const App = () => {
               />
             }
           />
-          <Route path="/login" element={<Login />} />
+          
 
           
           <Route
             path="/PurchaseOrder"
-            element={<PurchaseOrder totalAmount={getTotalPrice()} />}
+            element={<PurchaseOrder totalAmount={getTotalPrice()} emptyCart={emptyCart} />}
           />
 
           <Route

@@ -10,9 +10,18 @@
     
   }
   .selectCard{
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 25px;
-    margin-bottom: 25px;
+    
+    font-size: 20px;
+    margin-bottom: 35px;
+    color: rgb(180, 28, 28);
+
+  }
+
+  .typeOfCar{
+    
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 15px;
 
   }
 
@@ -53,7 +62,7 @@
   input[type=text] {
     
     margin-left: 10px;
-    padding-left: 5px;
+    padding-left: 15px;
     border-radius: 10px;
     width: 250px;
     height: 25px;
