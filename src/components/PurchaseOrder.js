@@ -21,6 +21,34 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
     setSelectedCard(cardType);
   };
 
+  const handlePhoneNumberChange = (e) => {
+    const inputPhoneNumber = e.target.value.replace(/[^\d]/g, ''); // Remove non-digit characters
+    
+    let formattedPhoneNumber = '';
+    if (inputPhoneNumber.length > 0) {
+      formattedPhoneNumber = '(' + inputPhoneNumber.slice(0, 3) + ')';
+    }
+    if (inputPhoneNumber.length > 3) {
+      formattedPhoneNumber += '-' + inputPhoneNumber.slice(3, 6);
+    }
+    if (inputPhoneNumber.length > 6) {
+      formattedPhoneNumber += '-' + inputPhoneNumber.slice(6, 10);
+    }
+  
+    setPhoneNumber(formattedPhoneNumber);
+  };
+
+  const handleCardNumberChange = (e) => {
+    const inputCardNumber = e.target.value;
+    const formattedCardNumber = inputCardNumber
+      .replace(/\s/g, '') // Remove existing spaces
+      .match(/.{1,4}/g) // Split into groups of 4 characters
+      .join(' ');
+  
+    setCardNumber(formattedCardNumber);
+  };
+
+
   const handlePay = () => {
     const errors = {};
 
@@ -28,20 +56,33 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
     if (!selectedCard) errors.selectedCard = 'Select a card type';
     if (!nameOnCard || !/^[a-zA-Z ]+$/.test(nameOnCard))
       errors.nameOnCard = 'Enter a valid name';
-    if (!cardNumber || !/^\d{16}$/.test(cardNumber))
+    if (!cardNumber.replace(/\s/g, '') || !/^\d{16}$/.test(cardNumber.replace(/\s/g, '')))
       errors.cardNumber = 'Enter a valid 16-digit card number';
-    if (!expirationDate || !/^\d{4}$/.test(expirationDate))
-      errors.expirationDate = 'Enter a valid expiration date (example 12/23)';
+    if (!expirationDate || !/^(0[1-9]|1[0-2])\/\d{2}$/.test(expirationDate)) {
+        errors.expirationDate = 'Enter a valid expiration date (example 12/23)';
+      }
     if (!securityCode || !/^\d{3}$/.test(securityCode))
       errors.securityCode = 'Enter a valid 3-digits security code';
-      if (!streetAdress) errors.streetAddress = 'Enter a street address';
-    if (!city || !/^[a-zA-Z]+$/.test(city)) errors.city = 'Enter a valid city';
-    if (!state || !/^[A-Z]{2}$/.test(state))
-      errors.state = 'Enter a valid two-letter state code';
-    if (!postalCode || !/^\d+$/.test(postalCode))
-      errors.postalCode = 'Enter a valid postal code';
-    if (!phoneNumber || !/^\d{10}$/.test(phoneNumber))
-      errors.phoneNumber = 'Enter a valid 10-digit phone number';
+    if (!streetAdress || !/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d\s]+$/.test(streetAdress)) {
+        errors.streetAdress = 'Enter a valid street address';
+      }
+    if (!city || !/^[a-zA-Z\s]+$/.test(city)) {
+        errors.city = 'Enter a valid city';
+      }
+    if (!state || !/^[A-Za-z]{2}$/.test(state)) {
+        errors.state = 'Enter a valid two-letter state code';
+      }
+    if (!postalCode || !/^\d{5}$/.test(postalCode)) {
+        errors.postalCode = 'Enter a valid 5-digit postal code';
+      }
+    if (!phoneNumber || phoneNumber.replace(/[^\d]/g, '').length !== 10) {
+        errors.phoneNumber = 'Enter a valid 10-digit phone number';
+      }
+
+      const nameParts = nameOnCard.split(' ');
+      if (nameParts.length !== 2) {
+        errors.nameOnCard = 'Enter both first and last name';
+      }  
 
     // Set errors and highlight fields
     setFieldErrors(errors);
@@ -123,12 +164,12 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
 
            </div>
           
-           <div className='CardNumber'>Card  Number    :       
+           <div className='CardNumber'>Card  Number:       
            <input
             type='text'
             placeholder='0000 0000 0000 0000'
             value={cardNumber}
-            onChange={(e) => setCardNumber(e.target.value)}
+            onChange={handleCardNumberChange}
           />
 
            </div>
@@ -139,9 +180,8 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
             type='text'
             placeholder=' month/year'
             value={expirationDate}
-            onChange={(e) => setExpirationDate(e.target.value)}
+            onChange={(e) => setExpirationDate(e.target.value.replace(/^(\d\d)(\/)?(\d{0,2})/, '$1/$3'))}
           />
-
 
            </div>
 
@@ -182,7 +222,6 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
           />
           </div>
 
-
           
           <div className='PostalCode'>Zip code  :
           <input
@@ -198,7 +237,7 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
             type='text'
             placeholder='(000)-000-0000'
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={handlePhoneNumberChange}
           />
 
           </div>
@@ -207,7 +246,7 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
         </div>
 
         {/* Payment button */}
-        <button onClick={handlePay}>
+        <button className='payButton' onClick={handlePay}>
           <span>Pay ${totalAmount}</span>
           <span>
             <img src='images/whitelock.png' alt='Lock' className='whiteLock' />
