@@ -11,7 +11,7 @@ const ErrorCard = ({ errors, onClose }) => {
             <li key={field}>{message}</li>
           ))}
         </ul>
-        <button onClick={onClose}>Close</button>
+        <button className='errorButton'   onClick={onClose}>Close</button>
       </div>
     </div>
   );

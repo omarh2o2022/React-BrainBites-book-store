@@ -31,7 +31,7 @@ const Cart = ({ cartItems, removeFromCart }) => {
     <div className='cartbox'>
       <h1>Shopping Cart</h1>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p >Your cart is empty.</p>
       ) : (
         <ul>
           {cartItems.map((book) => (
@@ -44,7 +44,7 @@ const Cart = ({ cartItems, removeFromCart }) => {
           ))}
         </ul>
       )}
-      <p>
+      <p >
         Total Price: ${getTotalPrice()}{' '}
         <button className='Purchase' onClick={goToPurchase}>
           Purchase
