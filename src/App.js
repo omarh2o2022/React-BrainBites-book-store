@@ -1,15 +1,17 @@
 /* App.js code */
 
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
 
 import TopBar from './components/TopBar';
-import BookContainer from './components/BookContainer';
+
 import Login from './components/Login';
 import Cart from './components/Cart';
 import PurchaseOrder from './components/PurchaseOrder';
 import CartMessagePopup from './components/CartMessagePopup';
+import BookStore from './components/BookStore';
+
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -73,8 +75,11 @@ const App = () => {
 
   return (
     <Router>
+      
       <div className="App">
+      
         <TopBar cartItemsCount={cartItems.length} />
+        
         
         {cartMessage && <CartMessagePopup message={cartMessage} onClose={closeCartMessage} />}
         
@@ -84,9 +89,9 @@ const App = () => {
 
           <Route path="/login" element={<Login />} />
           <Route
-            path="/app"
+            path="/BookStore"
             element={
-              <AppContent
+              <BookStore
                 cartItems={cartItems}
                 booksData={booksData}
                 addToCart={addToCart}
@@ -113,12 +118,13 @@ const App = () => {
   );
 };
 
-const AppContent = ({ cartItems, booksData, addToCart, removeFromCart }) => {
-  return (
-    <>
-      <BookContainer books={booksData} addToCart={addToCart} />
-    </>
-  );
-};
+
+
+
+
+
+
+
+
 
 export default App;
