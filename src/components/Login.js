@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div>
+      <div className='logButton'>
         <label htmlFor="username">Enter any user name:  </label>
         <input
           type="text"
@@ -28,7 +28,7 @@ const Login = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-      <div>
+      <div className='logButton'>
         <label htmlFor="password">Enter any password:  </label>
         <input
           type="password"

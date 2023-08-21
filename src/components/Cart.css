@@ -30,9 +30,9 @@
     font-size: 14px;
   }
 
-  .purchase {
-    background-color: #2cbb5c;
-    color: #fff;
+  .PurchaseBtn {
+    background-color: #128036;
+    color: #f0efef;
     border: none;
     padding: 8px 12px;
     cursor: pointer;

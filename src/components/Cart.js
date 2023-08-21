@@ -46,7 +46,7 @@ const Cart = ({ cartItems, removeFromCart }) => {
       )}
       <p >
         Total Price: ${getTotalPrice()}{' '}
-        <button className='Purchase' onClick={goToPurchase}>
+        <button className='PurchaseBtn' onClick={goToPurchase}>
           Purchase
         </button>
       </p>

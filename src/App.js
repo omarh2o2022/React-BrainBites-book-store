@@ -30,7 +30,7 @@ const App = () => {
       id: 2,
       name: 'Eat, Drink, and Be Healthy',
       image: 'images/eat.png',
-      price: 13.50,
+      price: 25.50,
       review: 'In this revised and updated edition of the bestselling Eat, Drink, and Be Healthy , Dr. Walter Willett, for twenty-five years chair of the renowned Department of Nutrition at the Harvard TH Chan School of Public Health and Professor of Medicine at Harvard Medical School, draws on cutting-edge research to explain what the USDA guidelines have gotten wrong--and how you can eat right',
       
     },
@@ -38,8 +38,30 @@ const App = () => {
       id: 3,
       name: 'Gordon Ramsay Healthy, Lean & Fit',
       image: 'images/fit.png',
-      price: 19.50,
+      price: 30.50,
       review: 'The definitive guide to eating well to achieve optimum health and fitness, by one of the worlds finest chefs and fitness fanatic, Gordon Ramsay',
+    },
+
+    {
+      id: 4,
+      name: 'The Shredded Chefis',
+      image: 'images/fit2.png',
+      price: 11.50,
+      review: 'The Shredded Chefis a culinary journey that takes healthy cooking to a whole new level combining the art of gastronomy with the science of fitness Authored with expertise and enthusiasm this book is a valuable resource for anyone seeking to sculpt their physique while indulging in delicious nutritious meals.',
+    },
+    {
+      id: 5,
+      name: 'the body building cookbook',
+      image: 'images/fit3.png',
+      price: 20.50,
+      review: 'the body building cookbook is a masterpiece that stands as a testament to the art of cooking.This cookbook transcends the boundaries of ordinary recipe collections, offering a comprehensive guide that empowers both novice and experienced chefs to unleash their culinary creativity.',
+    },
+    {
+      id: 6,
+      name: 'Feed Zone Portables',
+      image: 'images/fit4.png',
+      price: 40.50,
+      review: 'The definitive guide to eating well to achieve optimum health and fitness, by one of the worlds finest chefs and fitness fanatic,',
     },
     
   ]);
@@ -79,8 +101,18 @@ const App = () => {
   const emptyCart = () => {
     setCartItems([]);
   };
-  
 
+
+  const welcomeText = `Welcome to "BrainBites" `;
+  const bodyText = `- At BrainBites, we're excited to be your guide on a journey to a healthier you. Our online book store is dedicated solely to fitness and healthy food, offering a curated collection of resources to inspire and empower. 
+
+                  Explore our handpicked selection of fitness guides, nutrition tips, and mouthwatering recipes. Whether you're a fitness enthusiast or a culinary explorer, you'll find something to fuel your passion and elevate your well-being. 
+
+                  Join us in embracing a lifestyle that celebrates movement and nourishment. Let's embark on this journey together and discover the joy of a healthier, happier you.  
+                     `
+  const sloganText =`!Your Hub for Fitness and Healthy Culinary Exploration! `;
+  const finalSloganText = `Stay fit, stay nourished,`;
+  const signature = `The BrainBites Team`;
 
   return (
     <Router>
@@ -95,9 +127,24 @@ const App = () => {
         
         <Routes>
         
-        <Route path="/App" element={<Slider booksData={booksData} />} />
-          <Route path="/login" element={<Login />} />
-          <Route
+        <Route path="/App"  
+          element={
+          <>
+          <Slider booksData={booksData} /> 
+          <div className='bodyText'>
+          <p className='headerBody'>{welcomeText}</p> 
+          <p className='sloganBody'>{sloganText}</p>
+          <p className='textBody'>{bodyText}</p>
+          <p className='sloganFinal'>{finalSloganText}</p>
+          <p className='signatureBody'>{signature}</p>
+          </div>
+          
+           </>
+         } 
+        />
+
+        <Route path="/login" element={<Login />} />
+        <Route
             path="/BookStore"
             
             element={
@@ -134,6 +181,8 @@ const App = () => {
           />
           
         </Routes>
+
+        
         
         <Footer/>
       </div>
@@ -141,9 +190,12 @@ const App = () => {
   );
 };
 
+
+
 const AppContent = ({ cartItems, booksData, addToCart, removeFromCart, searchTerm, handleSearch }) => {
   return (
-    <>
+    <>   
+    
       <div className='searchBar'>
       <input className='sear-bar'
         type="text"

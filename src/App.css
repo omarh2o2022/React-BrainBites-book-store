@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: url('/public/images/header4.png'); /* Path to your background image */
+  background-image: url('/public/images/header5.png'); /* Path to your background image */
   background-size: cover; /* Cover the entire container with the background image */
   background-repeat: no-repeat; /* Prevent the background image from repeating */
   background-position: right; /* Center the background image horizontally and vertically */
@@ -25,7 +25,7 @@
 
 .store-name {
   margin-left: 419px;
-  color: #eee9da;
+  color: #f0efed;
   font-family: 'Lato', sans-serif;
   font-size: 45px;
   font-weight: bold;
@@ -34,7 +34,7 @@
 }
 .slogan{
   margin-left: 419px;
-  color: #eee9da;
+  color: #f0efee;
   font-family: 'Playfair Display', serif;
   font-size: 19px;
 }
@@ -70,14 +70,14 @@ button {
 /* Style for search bar input */
 .search-bar {
   padding-left: 16px;
-  border: 2px solid rgb(83, 102, 83);
+  border: 2px solid rgb(148, 146, 146);
   text-align: center;
 }
 
 /* Remove default styles for input[type="text"] */
 input[type="text"] {
   /* -webkit-appearance: none; */
-  background-color:  rgb(206, 241, 206);;
+  background-color:  rgb(235, 235, 235);;
   border: 1px;
   outline: 1px;
 }
@@ -101,7 +101,7 @@ input[type="text"] {
   border: 1px solid #eee9da;
   border-radius: 10px;
   text-align: center;
-  background-color: rgb(224, 224, 199);
+  background-color: rgb(245, 245, 245);
 }
 
 .book-box img {
@@ -147,7 +147,50 @@ input[type="text"] {
 }
 
 
+.welcome-text{
+  background-color: black;
+}
 
+.bodyText{
+ 
+  
+  width: 800px;
+  text-align: center;
+  margin: auto;
+  margin-top: 80px;
+}
+
+.headerBody{
+  font-family: 'Cinzel', serif;
+  font-size: xx-large;
+  margin-bottom: 0%;
+}
+
+.sloganBody{
+  font-family: inherit;
+  font-size: small;
+  margin-top: 0%;
+  margin-bottom: 50px;
+}
+
+.textBody{
+  font-family: 'Playfair Display', serif;
+  font-size: larger;
+}
+
+.sloganFinal{
+  font-family: 'Play', sans-serif;
+  font-size: small;
+}
+
+.signatureBody{
+  font-family: 'Lobster Two', cursive;
+  font-size: larger;
+}
+
+.pricebooks{
+  margin-top: 15px;
+}
 
 
 

@@ -4,6 +4,7 @@
     text-align: center;
     padding: 20px 0;
     margin-top: 200px;
+    
   }
   
   .footer-content {
@@ -12,6 +13,12 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    
+  }
+
+  .fontStyle{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: x-small;
   }
   
   /* Add styles for social network icons and email address */
