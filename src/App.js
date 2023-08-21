@@ -7,16 +7,15 @@ import Slider from './components/Slider';
 
 
 import TopBar from './components/TopBar';
+import BookContainer from './components/BookContainer';
 import Login from './components/Login';
 import Cart from './components/Cart';
 import PurchaseOrder from './components/PurchaseOrder';
 import CartMessagePopup from './components/CartMessagePopup';
-import BookStore from './components/BookStore';
 import Footer from './components/Footer';
 
-
-
 const App = () => {
+  const [searchTerm, setSearchTerm] = useState('');
   const [cartItems, setCartItems] = useState([]);
   const [booksData] = useState([
     {
@@ -42,9 +41,16 @@ const App = () => {
       price: 19.50,
       review: 'The definitive guide to eating well to achieve optimum health and fitness, by one of the worlds finest chefs and fitness fanatic, Gordon Ramsay',
     },
-
+    
   ]);
+  
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
+  const filteredBooks = booksData.filter((book) =>
+    book.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
  
 
   const [cartMessage, setCartMessage] = useState('');
@@ -82,9 +88,6 @@ const App = () => {
       <div className="App">
       
         <TopBar cartItemsCount={cartItems.length} />
-
-        
-        
         
         {cartMessage && <CartMessagePopup message={cartMessage} onClose={closeCartMessage} />}
         
@@ -96,16 +99,25 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route
             path="/BookStore"
+            
             element={
               
-              <BookStore
+              <AppContent
+
                 cartItems={cartItems}
-                booksData={booksData}
+                
+                booksData={filteredBooks}
                 addToCart={addToCart}
                 removeFromCart={removeFromCart}
                 clickedButtons={clickedButtons}
+                handleSearch={handleSearch}
+                
+                
               />
+              
             }
+            
+            
           />
           
           
@@ -120,10 +132,30 @@ const App = () => {
             path="/cart"
             element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} />}
           />
+          
         </Routes>
+        
         <Footer/>
       </div>
     </Router>
+  );
+};
+
+const AppContent = ({ cartItems, booksData, addToCart, removeFromCart, searchTerm, handleSearch }) => {
+  return (
+    <>
+      <div className='searchBar'>
+      <input className='sear-bar'
+        type="text"
+        placeholder="Find my book"
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+        
+      </div>
+      
+      <BookContainer books={booksData} addToCart={addToCart}  />
+    </>
   );
 };
 
