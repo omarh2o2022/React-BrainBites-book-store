@@ -1,0 +1,18 @@
+.footer {
+    background-color: rgb(127, 133, 127);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 200px;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Add styles for social network icons and email address */
+  

@@ -13,7 +13,7 @@ const Login = () => {
       alert('Please add text in USER NAME and PASSWORD');
     } else {
       // Redirect to App.js
-      navigate('/app');
+      navigate('/App');
     }
   };
 

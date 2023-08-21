@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './PurchaseOrder.css';
 import { useNavigate } from 'react-router-dom';
 import ErrorCard from './ErrorCard';
+import Paid from './Paid';
 
 const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
   const [selectedCard, setSelectedCard] = useState('');
@@ -16,6 +17,7 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
   const [state, setState] = useState ('');
   const [fieldErrors, setFieldErrors] = useState({});
   const navigate = useNavigate();
+  const [isPaidPopupVisible, setPaidPopupVisible] = useState(false);
 
   const handleCardSelect = (cardType) => {
     setSelectedCard(cardType);
@@ -87,24 +89,18 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
     // Set errors and highlight fields
     setFieldErrors(errors);
 
-    if (Object.keys(errors).length === 0) {
-      
+    if (Object.keys(errors).length === 0) {      
 
-      // Empty the cart
       emptyCart();
 
       // Show success message in a popup
-      const popup = window.open(
-        '',
-        '_blank',
-        'width=300,height=200,top=200,left=400'
-      );
-      popup.document.write('<p>Your purchase has been successful.</p>');
+      setPaidPopupVisible(true);
+      
       setTimeout(() => {
-        popup.close();
-        // Navigate back to the main page
+        setPaidPopupVisible(false);
+
         navigate('/app');
-      }, 3000);
+      }, 4000);
     }
   };
 
@@ -252,6 +248,8 @@ const PurchaseOrder = ({ totalAmount, emptyCart  }) => {
             <img src='images/whitelock.png' alt='Lock' className='whiteLock' />
           </span>
         </button>
+        
+        {isPaidPopupVisible && <Paid onClose={() => setPaidPopupVisible(false)} />}
 
         {Object.keys(fieldErrors).length > 0 && (
         <ErrorCard errors={fieldErrors} onClose={() => setFieldErrors({})} />

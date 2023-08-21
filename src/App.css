@@ -81,7 +81,7 @@ input[type="text"] {
   display: flex;
   justify-content: center; /* Distribute books evenly with space between them */
   flex-wrap: wrap; /* Wrap books to the next line if needed */
-  margin-top: 120px;
+  margin-top: 60px;
   
 }
 
@@ -137,4 +137,8 @@ input[type="text"] {
 .book-box.clicked .addToCartBtn {
   background-color: #e74e1f;
 }
+
+
+
+
 

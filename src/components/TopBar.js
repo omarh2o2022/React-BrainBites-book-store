@@ -22,6 +22,10 @@ const TopBar = () => {
           <button className="home">Home</button>
         </Link>
 
+        <Link to="/BookStore">
+          <button className="bookStore">Store</button>
+        </Link>
+
         
         <Link to="/login">
           <button className="log-in">Log In</button>

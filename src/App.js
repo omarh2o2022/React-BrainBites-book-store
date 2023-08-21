@@ -1,15 +1,20 @@
 /* App.js code */
 
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
+import Slider from './components/Slider';
+
 
 import TopBar from './components/TopBar';
-import BookContainer from './components/BookContainer';
 import Login from './components/Login';
 import Cart from './components/Cart';
 import PurchaseOrder from './components/PurchaseOrder';
 import CartMessagePopup from './components/CartMessagePopup';
+import BookStore from './components/BookStore';
+import Footer from './components/Footer';
+
+
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -73,20 +78,27 @@ const App = () => {
 
   return (
     <Router>
+      
       <div className="App">
+      
         <TopBar cartItemsCount={cartItems.length} />
+
+        
+        
         
         {cartMessage && <CartMessagePopup message={cartMessage} onClose={closeCartMessage} />}
         
         
         
         <Routes>
-
+        
+        <Route path="/App" element={<Slider booksData={booksData} />} />
           <Route path="/login" element={<Login />} />
           <Route
-            path="/app"
+            path="/BookStore"
             element={
-              <AppContent
+              
+              <BookStore
                 cartItems={cartItems}
                 booksData={booksData}
                 addToCart={addToCart}
@@ -95,6 +107,7 @@ const App = () => {
               />
             }
           />
+          
           
 
           
@@ -108,16 +121,9 @@ const App = () => {
             element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} />}
           />
         </Routes>
+        <Footer/>
       </div>
     </Router>
-  );
-};
-
-const AppContent = ({ cartItems, booksData, addToCart, removeFromCart }) => {
-  return (
-    <>
-      <BookContainer books={booksData} addToCart={addToCart} />
-    </>
   );
 };
 
