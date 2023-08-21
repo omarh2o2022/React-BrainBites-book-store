@@ -59,8 +59,8 @@ button {
 }
 
 .searchBar{
-  width: 780px;
-  height: 200px;
+  width: 775px;
+  height: 100px;
   margin-top: 40px;
   text-align: end;
   
@@ -68,17 +68,16 @@ button {
 }
 
 /* Style for search bar input */
-/* .search-bar {
-  width: 800px;
-  height: 100px;
-  border: 2px solid rgb(204, 216, 204);
-  
-} */
+.search-bar {
+  padding-left: 16px;
+  border: 2px solid rgb(83, 102, 83);
+  text-align: center;
+}
 
 /* Remove default styles for input[type="text"] */
 input[type="text"] {
   /* -webkit-appearance: none; */
-  background-color:  rgb(217, 226, 217);;
+  background-color:  rgb(206, 241, 206);;
   border: 1px;
   outline: 1px;
 }
@@ -90,7 +89,7 @@ input[type="text"] {
   display: flex;
   justify-content: center; /* Distribute books evenly with space between them */
   flex-wrap: wrap; /* Wrap books to the next line if needed */
- 
+  margin-top: 60px;
   
 }
 
@@ -113,7 +112,7 @@ input[type="text"] {
 }
 
 .review {
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 /* add form */
